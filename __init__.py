@@ -283,12 +283,8 @@ class Plugin(PluginInstance, GeneratorQueryHandler):
             if not real_query:
                 return
 
-            yield [StandardItem(
-                id="gemini-thinking",
-                text="Thinking...",
-                subtext=f"Querying {self.model_name}...",
-                icon_factory=lambda: self._icon()
-            )]
+            # No placeholder: Albert appends later batches instead of
+            # replacing it, or fetches them only on scrolling.
             time.sleep(LIVE_DEBOUNCE_SECONDS)
             if not ctx.isValid:
                 return
